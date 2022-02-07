@@ -1,0 +1,31 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#       * pos_reprint_receipts
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0-20191014\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-28 15:36+0000\n"
+"PO-Revision-Date: 2020-01-28 15:36+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_reprint_receipts
+#: model:ir.actions.report,name:pos_reprint_receipts.action_report_receipt
+msgid "Reimprimir Factura"
+msgstr ""
+
+#. module: pos_reprint_receipts
+#: model_terms:ir.ui.view,arch_db:pos_reprint_receipts.view_pos_pos_form
+msgid "Report title"
+msgstr ""
+
+#. module: pos_reprint_receipts
+#: model_terms:ir.ui.view,arch_db:pos_reprint_receipts.view_pos_pos_form
+msgid "This object's name is"
+msgstr ""
