@@ -6,7 +6,7 @@
 			    <div style="font-size:11px;">
 		<div class="col-xs-12 text-center">
 		<t t-if="o.amount_total &gt; 0">
-                <h2>Factura de Venta No.: <span t-field="o.name"/> </h2>
+                <h2>Pedido No.: <span t-field="o.name"/> </h2>
 		</t>
 		<t t-if="o.amount_total &lt; 0">
                 <h2>Devolución No.: <span t-field="o.name"/> </h2>
@@ -18,12 +18,6 @@
           <div class="col-xs-12 text-center">
             <span style="color: grey;">
             Fecha: <span t-field="o.date_order"/>
-	  <t t-if="o.amount_total &gt; 0"> |
-               Autorización DIAN número: <span t-field="o.resolution_number"/> <br />
-Fecha de Autorización: <span t-field="o.resolution_date"/>
-<t t-if="o.resolution_date_to"> | Fecha de Vigencia: <span t-field="o.resolution_date_to"/></t> <br />
-              Rango Facturación: <span t-field="o.resolution_number_from"/> - <span t-field="o.resolution_number_to"/>
-	</t>
             </span><hr></hr>
           </div>
 
@@ -31,13 +25,13 @@ Fecha de Autorización: <span t-field="o.resolution_date"/>
             <div class="col-xs-6">
               <span>
 		
-		 <t t-if="o.amount_total &gt; 0"><b>FACTURADO A:</b></t>
-		 <t t-if="o.amount_total &lt; 0"><b>DEVUELTO POR:</b></t>
+		 <t t-if="o.amount_total &gt; 0"><b>Cliente:</b></t>
+		 <t t-if="o.amount_total &lt; 0"><b>Devolución a:</b></t>
 
 	     </span><br />
                   <div t-field="o.partner_id"
                       t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true, "phone_icons": true}'/>
-                  <t t-if="o.partner_id.formatedNit">NIT: <span t-field="o.partner_id.formatedNit" /><br /> </t>
+                  <t t-if="o.partner_id.vat">NIF: <span t-field="o.partner_id.vat" /><br /> </t>
                   <br />
 
             </div>
@@ -45,13 +39,13 @@ Fecha de Autorización: <span t-field="o.resolution_date"/>
 
           <div class="col-xs-6">
             <span>
-		<t t-if="o.amount_total &gt; 0"><b>FACTURADO POR:</b></t>
-                 <t t-if="o.amount_total &lt; 0"><b>CREADO POR:</b></t>
+		<t t-if="o.amount_total &gt; 0"><b>Vendedor:</b></t>
+                 <t t-if="o.amount_total &lt; 0"><b>Compañia:</b></t>
 	    </span><br />
                 <span t-esc="o.user_id.company_id.name" /><br />
                 <em>(Usuario: <span t-field="o.user_id"/>)</em><br/>
                 Dirección: <span t-field="o.company_id.partner_id.street" />, <span t-field="o.company_id.partner_id.state_id" /><br />
-          <t t-if="o.company_id.partner_id.formatedNit">NIT: <span t-field="o.company_id.partner_id.formatedNit" /><br /><br /></t>
+          <t t-if="o.company_id.partner_id.vat">NIF: <span t-field="o.company_id.partner_id.vat" /><br /><br /></t>
           <t t-if="o.company_id.partner_id.phone">Teléfono: <span t-field="o.company_id.partner_id.phone" /> | </t>
             <t t-if="o.company_id.partner_id.email">Correo: <span t-field="o.company_id.partner_id.email" /></t><br /><br />
           </div>
