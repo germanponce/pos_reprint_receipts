@@ -23,8 +23,6 @@ from datetime import date, datetime, timedelta
 import logging
 _logger = logging.getLogger(__name__)
 
-
-
 class PosOrder(models.Model):
     _inherit ='pos.order'
 
@@ -47,4 +45,3 @@ class PosOrderLine(models.Model):
                     if lot.name not in pack_lots_name:
                         pack_lots_name = pack_lots_name+", "+lot.name if pack_lots_name else lot.name
         return pack_lots_name
-
