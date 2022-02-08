@@ -59,24 +59,24 @@
                         </tr>
                         <t t-foreach="o.lines" t-as="line">
                             <tr >
-                                <td><span class="text-left" t-field="line.product_id"/><br />
+                                <td style="border-bottom: 1px dotted black;"><span class="text-left" t-field="line.product_id"/><br />
                                     <t t-if="line.discount != 0.0">
                                         (Descuento: <span t-esc="line.discount"/>%)
                                     </t>
                                 </td>
-                                <td class="text-right" align="right">
+                                <td class="text-right" align="right" style="border-bottom: 1px dotted black;">
                                     <t t-if="o.state != 'cancel' and o.statement_ids">
     					               <span class="text-right" t-esc="'{0:,.2f}'.format(line.qty)"/>
                                     </t>
                                 </td>
-                                <td class="text-right" align="right">
+                                <td class="text-right" align="right" style="border-bottom: 1px dotted black;">
     				                <t t-if="o.state != 'cancel' and o.statement_ids">
             					       <span>€ </span><strong class="text-right" t-esc="'{0:,.0f}'.format(line.price_subtotal_incl)" />
                                     </t>
                                 </td>
                             </tr>
                             <tr t-if="line.pack_lot_ids">
-                                <td colspan="3">
+                                <td colspan="3" style="border-bottom: 1px dotted black;">
                                     <i style="font-size:10px;"><strong>Lotes/Series: </strong><span t-esc="o.get_lots_name(line)"/></i>
                                 </td>
                             </tr>
