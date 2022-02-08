@@ -6,10 +6,10 @@
 			    <div style="font-size:11px;">
 		<div class="col-xs-12 text-center">
 		<t t-if="o.amount_total &gt; 0">
-                <h2>Pedido No.: <span t-field="o.name"/> </h2>
+                <h3>Pedido #: <span t-field="o.name"/> </h3>
 		</t>
 		<t t-if="o.amount_total &lt; 0">
-                <h2>Devolución No.: <span t-field="o.name"/> </h2>
+                <h3>Devolución #: <span t-field="o.name"/> </h3>
                 </t>
           </div><br />
 
@@ -72,7 +72,7 @@
                             </td>
                             <td class="text-right" align="right">
 				    <t t-if="o.state != 'cancel' and o.statement_ids">
-					    <span>$ </span><strong class="text-right" t-esc="'{0:,.0f}'.format(line.price_subtotal_incl).replace(',','.')" />
+					    <span>€ </span><strong class="text-right" t-esc="'{0:,.0f}'.format(line.price_subtotal_incl)" />
                                 </t>
                             </td>
                         </tr>
@@ -84,7 +84,7 @@
                             <tr class="border-black">
                                 <td><strong>Total</strong></td>
                                 <td class="text-right" align="right">
-					<span>$ </span><strong class="text-right" t-esc="'{0:,.0f}'.format(o.amount_total).replace(',','.')" />
+					<span>€ </span><strong class="text-right" t-esc="'{0:,.0f}'.format(o.amount_total)" />
                                 </td>
                             </tr>
                             <tr>
@@ -95,14 +95,14 @@
                             <tr>
 				    <td><span style="font-size:11px;">Subtotal</span></td>
 				<td class="text-right">
-					<span>$ </span><span style="font-size:11px;" t-esc="'{0:,.0f}'.format(o.amount_total-o.amount_tax).replace(',','.')" />
+					<span>€ </span><span style="font-size:11px;" t-esc="'{0:,.0f}'.format(o.amount_total-o.amount_tax)" />
 					<!-- <span t-esc="formatLang(o.amount_total-o.amount_tax, currency_obj=res_company.currency_id)"/> -->
                                 </td>
                             </tr>
                             <tr>
                                 <td><span style="font-size:11px;">Impuestos (IVA 19%): </span></td>
 				<td class="text-right">
-					<span>$ </span><span style="font-size:11px;" t-esc="'{0:,.0f}'.format(o.amount_tax).replace(',','.')" />
+					<span>€ </span><span style="font-size:11px;" t-esc="'{0:,.0f}'.format(o.amount_tax)" />
                                 </td>
                             </tr>
 
@@ -110,18 +110,61 @@
                         </table>
                     </div>
 	    </div>
-    </div>
+
+        <br/>
+        <h3>Pagos </h3>
+        <table class="table table-condensed" style="font-size:11px;">
+                    <thead>
+                        <tr>
+                            <th align="left" width="70%" class="text-left">Forma Pago</th>
+                            <th align="right" width="10%" class="text-right"></th>
+                            <th align="right" width="20%" class="text-right">Importe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="o.statement_ids" t-as="pago">
+                            <td><span class="text-left" t-field="pago.journal_id.name"/>
+                            </td>
+                            <td class="text-right" align="right">
+                            </td>
+                            <td class="text-right" align="right">
+                                <span>€ </span><strong class="text-right" t-esc="'{0:,.0f}'.format(pago.amount)" />
+                            </td>
+                        </tr>
+                    </tbody>
+        </table><hr></hr>
+
+        </div>
 	        </t>
 	    </t>
 	</template>	
+
+        <record id="paperformat_pos_ticket" model="report.paperformat">
+            <field name="name">Reprint Ticket(POS)</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">175</field>
+            <field name="page_width">65</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">3</field>
+            <field name="margin_bottom">3</field>
+            <field name="margin_left">3</field>
+            <field name="margin_right">3</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">3</field>
+            <field name="dpi">90</field>
+        </record>
 
 
         <report id="action_report_payment"
                 model="pos.order"
                 report_type="qweb-pdf"
                 name="pos_reprint_receipts.report_receipts"
-                string="Reimprimir Factura"
-                file="report_receipts"/>
+                string="Reimpresión de Ticket"
+                file="report_receipts"
+                paperformat="pos_reprint_receipts.paperformat_pos_ticket"
+
+                />
 
 
 
