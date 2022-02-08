@@ -24,9 +24,20 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
+
+class PosOrder(models.Model):
+    _inherit ='pos.order'
+
+    def get_lots_name(self, orderline):
+        pack_lots_name = ""
+        if orderline.pack_lot_ids:
+            for lot in orderline.pack_lot_ids
+                if lot.name not in pack_lots_name:
+                    pack_lots_name = pack_lots_name+", "+lot.name if pack_lots_name else lot.name
+        return pack_lots_name
+
 class PosOrderLine(models.Model):
     _inherit ='pos.order.line'
-
 
     def get_lots_name(self):
         pack_lots_name = ""

@@ -77,7 +77,7 @@
                             </td>
                             <t t-if="line.pack_lot_ids">
                                 <td colspan="3">
-                                    Lotes/Series: <span t-esc="line.get_lots_name()"/>
+                                    Lotes/Series: <span t-esc="o.get_lots_name(line)"/>
                                 </td>
                             </t>
                         </tr>
