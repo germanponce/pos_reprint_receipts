@@ -67,14 +67,19 @@
                             </td>
                             <td class="text-right" align="right">
                                 <t t-if="o.state != 'cancel' and o.statement_ids">
-					<span class="text-right" t-esc="'{0:,.2f}'.format(line.qty)"/>
+					               <span class="text-right" t-esc="'{0:,.2f}'.format(line.qty)"/>
                                 </t>
                             </td>
                             <td class="text-right" align="right">
-				    <t t-if="o.state != 'cancel' and o.statement_ids">
-					    <span>€ </span><strong class="text-right" t-esc="'{0:,.0f}'.format(line.price_subtotal_incl)" />
+				                <t t-if="o.state != 'cancel' and o.statement_ids">
+        					       <span>€ </span><strong class="text-right" t-esc="'{0:,.0f}'.format(line.price_subtotal_incl)" />
                                 </t>
                             </td>
+                            <t t-if="line.pack_lot_ids">
+                                <td colspan="3">
+                                    Lotes/Series: <span t-esc="line.get_lots_name()"/>
+                                </td>
+                            </t>
                         </tr>
                     </tbody>
 	    </table><hr></hr>
