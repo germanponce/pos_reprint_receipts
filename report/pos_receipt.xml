@@ -52,33 +52,35 @@
 
 	 <table class="table table-condensed" style="font-size:11px;">
                     <tbody>
-                        <td>
-                            <th align="left" width="70%" class="text-left">Descripción</th>
-                            <th align="right" width="10%" class="text-right">Cant.</th>
-                            <th align="right" width="20%" class="text-right">Precio</th>
-                        </td>
-                        <tr t-foreach="o.lines" t-as="line">
-                            <td><span class="text-left" t-field="line.product_id"/><br />
-                                <t t-if="line.discount != 0.0">
-                                    (Descuento: <span t-esc="line.discount"/>%)
-                                </t>
-                            </td>
-                            <td class="text-right" align="right">
-                                <t t-if="o.state != 'cancel' and o.statement_ids">
-					               <span class="text-right" t-esc="'{0:,.2f}'.format(line.qty)"/>
-                                </t>
-                            </td>
-                            <td class="text-right" align="right">
-				                <t t-if="o.state != 'cancel' and o.statement_ids">
-        					       <span>€ </span><strong class="text-right" t-esc="'{0:,.0f}'.format(line.price_subtotal_incl)" />
-                                </t>
-                            </td>
-                            <t t-if="line.pack_lot_ids">
+                        <tr>
+                            <td align="left" width="70%" class="text-left">Descripción</td>
+                            <td align="right" width="10%" class="text-right">Cant.</td>
+                            <td align="right" width="20%" class="text-right">Precio</td>
+                        </tr>
+                        <t t-foreach="o.lines" t-as="line">
+                            <tr >
+                                <td><span class="text-left" t-field="line.product_id"/><br />
+                                    <t t-if="line.discount != 0.0">
+                                        (Descuento: <span t-esc="line.discount"/>%)
+                                    </t>
+                                </td>
+                                <td class="text-right" align="right">
+                                    <t t-if="o.state != 'cancel' and o.statement_ids">
+    					               <span class="text-right" t-esc="'{0:,.2f}'.format(line.qty)"/>
+                                    </t>
+                                </td>
+                                <td class="text-right" align="right">
+    				                <t t-if="o.state != 'cancel' and o.statement_ids">
+            					       <span>€ </span><strong class="text-right" t-esc="'{0:,.0f}'.format(line.price_subtotal_incl)" />
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr t-if="line.pack_lot_ids">
                                 <td colspan="3">
                                     Lotes/Series: <span t-esc="o.get_lots_name(line)"/>
                                 </td>
-                            </t>
-                        </tr>
+                            </tr>
+                        </t>
                     </tbody>
 	    </table><hr></hr>
 		<div class="row">
