@@ -51,14 +51,12 @@
           </div>
 
 	 <table class="table table-condensed" style="font-size:11px;">
-                    <thead>
-                        <tr>
+                    <tbody>
+                        <td>
                             <th align="left" width="70%" class="text-left">Descripción</th>
                             <th align="right" width="10%" class="text-right">Cant.</th>
                             <th align="right" width="20%" class="text-right">Precio</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                        </td>
                         <tr t-foreach="o.lines" t-as="line">
                             <td><span class="text-left" t-field="line.product_id"/><br />
                                 <t t-if="line.discount != 0.0">
