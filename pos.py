@@ -25,7 +25,6 @@ _logger = logging.getLogger(__name__)
 
 
 class PosOrderLine(models.Model):
-    _name = 'pos.order.line'
     _inherit ='pos.order.line'
 
 
