@@ -31,7 +31,7 @@ class PosOrder(models.Model):
     def get_lots_name(self, orderline):
         pack_lots_name = ""
         if orderline.pack_lot_ids:
-            for lot in orderline.pack_lot_ids
+            for lot in orderline.pack_lot_ids:
                 if lot.name not in pack_lots_name:
                     pack_lots_name = pack_lots_name+", "+lot.name if pack_lots_name else lot.name
         return pack_lots_name
@@ -43,7 +43,7 @@ class PosOrderLine(models.Model):
         pack_lots_name = ""
         for line in self:
             if line.pack_lot_ids:
-                for lot in line.pack_lot_ids
+                for lot in line.pack_lot_ids:
                     if lot.name not in pack_lots_name:
                         pack_lots_name = pack_lots_name+", "+lot.name if pack_lots_name else lot.name
         return pack_lots_name
