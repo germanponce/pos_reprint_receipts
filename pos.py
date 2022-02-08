@@ -36,5 +36,5 @@ class PosOrderLine(models.Model):
                 for lot in line.pack_lot_ids
                     if lot.name not in pack_lots_name:
                         pack_lots_name = pack_lots_name+", "+lot.name if pack_lots_name else lot.name
-        return los_name
+        return pack_lots_name
 
